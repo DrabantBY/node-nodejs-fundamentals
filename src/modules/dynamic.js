@@ -10,10 +10,8 @@ const dynamic = async () => {
   } catch (error) {
     if (error.code === "ERR_MODULE_NOT_FOUND") {
       console.log("Plugin not found");
-      process.exit(1);
-    } else {
-      console.log(`Error: ${error.message}`);
     }
+    process.exit(1);
   }
 };
 

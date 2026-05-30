@@ -1,5 +1,5 @@
-import { parseArgs } from "node:util";
 import { Transform } from "node:stream";
+import { parseArgs } from "node:util";
 
 const getParams = () => {
   const { values } = parseArgs({
