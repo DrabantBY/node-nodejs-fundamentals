@@ -18,7 +18,7 @@ const filter = () => {
     transform(chunk, _, callback) {
       this.push(
         `${chunk}`
-          .split("\n")
+          .split(/\n/)
           .reduce(
             (str, line) => (line.includes(pattern) ? `${str}${line}\n` : str),
             "",

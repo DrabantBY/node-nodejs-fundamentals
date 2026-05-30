@@ -1,12 +1,13 @@
 import { Transform } from "node:stream";
 
 const lineNumberer = () => {
+  let counter = 1;
   const transform = new Transform({
     transform(chunk, _, callback) {
       this.push(
         `${chunk}`
-          .split("\n")
-          .reduce((str, el, i) => (el ? `${str}${i + 1} | ${el}\n` : str), ""),
+          .split(/\n/)
+          .reduce((str, el) => (el ? `${str}${counter++} | ${el}\n` : str), ""),
       );
       callback();
     },
