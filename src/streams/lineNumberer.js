@@ -3,14 +3,11 @@ import { Transform } from "node:stream";
 const lineNumberer = () => {
   const transform = new Transform({
     transform(chunk, _, callback) {
-      const lineNumberer = `${chunk}`
-        .split("\n")
-        .reduce(
-          (str, line, index) => (line ? `${str}${index + 1} | ${line}\n` : str),
-          "",
-        );
-
-      this.push(lineNumberer);
+      this.push(
+        `${chunk}`
+          .split("\n")
+          .reduce((str, el, i) => (el ? `${str}${i + 1} | ${el}\n` : str), ""),
+      );
       callback();
     },
   });
