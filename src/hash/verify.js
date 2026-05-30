@@ -1,8 +1,9 @@
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
 import { resolve } from "node:path";
+import { cwd } from "node:process";
 
-const getPath = (fileName) => resolve(import.meta.dirname, fileName);
+const getPath = (fileName) => resolve(cwd(), fileName);
 
 const verify = async () => {
   try {

@@ -1,5 +1,5 @@
+import { cwd, stdin, stdout, uptime } from "node:process";
 import { createInterface } from "node:readline/promises";
-import { stdin, stdout, uptime, cwd } from "node:process";
 
 const interactive = async () => {
   const rl = createInterface({ input: stdin, output: stdout });

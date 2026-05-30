@@ -1,5 +1,5 @@
-import { parseArgs } from "node:util";
 import { stdout } from "node:process";
+import { parseArgs } from "node:util";
 
 const getParams = () => {
   const { values } = parseArgs({
