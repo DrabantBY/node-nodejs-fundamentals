@@ -1,4 +1,4 @@
-import { readdir, readFile, stat } from "node:fs/promises";
+import { readdir, readFile, stat, writeFile } from "node:fs/promises";
 import { join, relative, resolve } from "node:path";
 import { cwd } from "node:process";
 
@@ -36,7 +36,10 @@ const snapshot = async () => {
       }
     }
 
-    console.log(snapshot);
+    await writeFile(
+      resolve(cwd(), "snapshot.json"),
+      JSON.stringify(snapshot, null, 2),
+    );
   } catch {
     throw new Error("FS operation failed");
   }

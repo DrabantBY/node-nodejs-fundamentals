@@ -1,8 +1,29 @@
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
+import { cwd } from "node:process";
+
 const restore = async () => {
-  // Write your code here
-  // Read snapshot.json
-  // Treat snapshot.rootPath as metadata only
-  // Recreate directory/file structure in workspace_restored
+  try {
+    const targetFile = resolve(cwd(), "snapshot.json");
+    const targetDir = resolve(cwd(), "workspace_restored");
+
+    const data = await readFile(targetFile, "utf8");
+    const { entries } = JSON.parse(data);
+
+    await mkdir(targetDir);
+
+    for (const { type, path, content } of entries) {
+      if (type === "directory") {
+        await mkdir(resolve(targetDir, path), { recursive: true });
+      }
+
+      if (type === "file") {
+        await writeFile(resolve(targetDir, path), content, "base64");
+      }
+    }
+  } catch {
+    throw new Error("FS operation failed");
+  }
 };
 
 await restore();
