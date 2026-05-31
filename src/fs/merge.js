@@ -11,7 +11,8 @@ const getParams = () => {
       },
     },
   });
-  return values.files;
+
+  return values.files?.split(",");
 };
 
 const merge = async () => {
