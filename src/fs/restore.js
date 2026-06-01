@@ -1,5 +1,5 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { cwd } from "node:process";
 
 const restore = async () => {
@@ -10,15 +10,15 @@ const restore = async () => {
     const data = await readFile(targetFile, "utf8");
     const { entries } = JSON.parse(data);
 
-    await mkdir(targetDir);
+    await mkdir(targetDir, { recursive: true });
 
     for (const { type, path, content } of entries) {
       if (type === "directory") {
-        await mkdir(resolve(targetDir, path), { recursive: true });
+        await mkdir(join(targetDir, path), { recursive: true });
       }
 
       if (type === "file") {
-        await writeFile(resolve(targetDir, path), content, "base64");
+        await writeFile(join(targetDir, path), content, "base64");
       }
     }
   } catch {
