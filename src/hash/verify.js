@@ -29,12 +29,8 @@ const verify = async () => {
         `${fileName} — ${hash.digest("hex") === checksums[fileName] ? "OK" : "FAIL"}`,
       );
     }
-  } catch (error) {
-    if (error.code === "ENOENT") {
-      throw new Error("FS operation failed");
-    } else {
-      console.log(`Error: ${error.message}`);
-    }
+  } catch {
+    throw new Error("FS operation failed");
   }
 };
 
