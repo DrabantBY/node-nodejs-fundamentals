@@ -31,7 +31,7 @@ const decompressDir = async () => {
       if (text === undefined) {
         await mkdir(join(targetDir, path), { recursive: true });
       } else {
-        await writeFile(join(targetDir, path), text, "utf8");
+        await writeFile(join(targetDir, path), text);
       }
     }
   } catch {

@@ -29,7 +29,7 @@ const compressDir = async () => {
 
       if (file.isFile()) {
         const path = join(file.parentPath, file.name);
-        const text = await readFile(path, "utf8");
+        const text = await readFile(path);
 
         data.push({
           path: relative(sourceDir, path),

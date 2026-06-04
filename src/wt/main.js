@@ -84,7 +84,7 @@ const createWorker = (path, workerData) => {
 };
 
 const main = async () => {
-  const data = await readFile(resolve(cwd(), "data.json"), "utf8");
+  const data = await readFile(resolve(cwd(), "data.json"));
 
   const numbers = JSON.parse(data);
 

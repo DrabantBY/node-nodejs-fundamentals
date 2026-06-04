@@ -21,10 +21,9 @@ const split = async () => {
 
   let writeStream = createWriteStream(
     resolve(cwd(), `chunk_${chunksCount}.txt`),
-    "utf-8",
   );
 
-  const readStream = createReadStream(resolve(cwd(), "source.txt"), "utf-8");
+  const readStream = createReadStream(resolve(cwd(), "source.txt"));
 
   const readLine = createInterface({
     input: readStream,

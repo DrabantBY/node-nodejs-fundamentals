@@ -1,10 +1,14 @@
-import { cwd, stdin, stdout, uptime } from "node:process";
+import { cwd, exit, stdin, stdout, uptime } from "node:process";
 import { createInterface } from "node:readline/promises";
 
 const interactive = async () => {
   const rl = createInterface({ input: stdin, output: stdout });
-  rl.on("close", () => console.log("Goodbye!"));
-  rl.on("SIGINT", () => rl.close());
+  rl.on("close", () => {
+    console.log("\nGoodbye!");
+    exit(0);
+  });
+
+  rl.on("SIGINT", rl.close);
 
   while (true) {
     const line = await rl.question("> ");

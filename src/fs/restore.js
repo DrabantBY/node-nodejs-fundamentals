@@ -7,7 +7,7 @@ const restore = async () => {
     const targetFile = resolve(cwd(), "snapshot.json");
     const targetDir = resolve(cwd(), "workspace_restored");
 
-    const data = await readFile(targetFile, "utf8");
+    const data = await readFile(targetFile);
     const { entries } = JSON.parse(data);
 
     await mkdir(targetDir, { recursive: true });

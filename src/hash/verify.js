@@ -9,10 +9,7 @@ const verify = async () => {
   try {
     let json = "";
 
-    for await (const chunk of createReadStream(
-      getPath("checksums.json"),
-      "utf-8",
-    )) {
+    for await (const chunk of createReadStream(getPath("checksums.json"))) {
       json += chunk;
     }
 

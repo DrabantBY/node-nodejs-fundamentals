@@ -41,8 +41,8 @@ const merge = async () => {
     }
 
     for (const { parentPath, name } of files) {
-      const data = await readFile(join(parentPath, name), "utf8");
-      await appendFile(targetFile, data, "utf8");
+      const data = await readFile(join(parentPath, name));
+      await appendFile(targetFile, data);
     }
   } catch {
     throw new Error("FS operation failed");
