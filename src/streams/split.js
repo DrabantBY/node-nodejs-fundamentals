@@ -1,6 +1,5 @@
 import { createReadStream, createWriteStream } from "node:fs";
 import { resolve } from "node:path";
-import { cwd } from "node:process";
 import { createInterface } from "node:readline";
 import { parseArgs } from "node:util";
 
@@ -19,11 +18,9 @@ const split = async () => {
   let chunksCount = 1;
   let lineCounter = 0;
 
-  let writeStream = createWriteStream(
-    resolve(cwd(), `chunk_${chunksCount}.txt`),
-  );
+  let writeStream = createWriteStream(resolve(`chunk_${chunksCount}.txt`));
 
-  const readStream = createReadStream(resolve(cwd(), "source.txt"));
+  const readStream = createReadStream(resolve("source.txt"));
 
   const readLine = createInterface({
     input: readStream,
@@ -41,10 +38,7 @@ const split = async () => {
 
       writeStream.end();
 
-      writeStream = createWriteStream(
-        resolve(cwd(), `chunk_${chunksCount}.txt`),
-        "utf-8",
-      );
+      writeStream = createWriteStream(resolve(`chunk_${chunksCount}.txt`));
     }
   }
 

@@ -1,6 +1,5 @@
 import { appendFile, readdir, readFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
-import { cwd } from "node:process";
 import { parseArgs } from "node:util";
 
 const getParams = () => {
@@ -19,8 +18,8 @@ const merge = async () => {
   try {
     const names = getParams();
 
-    const targetDir = resolve(cwd(), "workspace", "parts");
-    const targetFile = resolve(cwd(), "workspace", "merged.txt");
+    const targetDir = resolve("workspace", "parts");
+    const targetFile = resolve("workspace", "merged.txt");
 
     const entries = await readdir(targetDir, {
       withFileTypes: true,

@@ -1,6 +1,5 @@
 import { readdir } from "node:fs/promises";
 import { resolve } from "node:path";
-import { cwd } from "node:process";
 import { parseArgs } from "node:util";
 
 const getParams = () => {
@@ -16,7 +15,7 @@ const findByExt = async () => {
   const ext = getParams();
 
   try {
-    const files = await readdir(resolve(cwd(), "workspace"), {
+    const files = await readdir(resolve("workspace"), {
       recursive: true,
     });
 

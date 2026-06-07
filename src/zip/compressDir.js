@@ -1,15 +1,14 @@
 import { createWriteStream } from "node:fs";
 import { mkdir, readdir, readFile } from "node:fs/promises";
 import { join, relative, resolve } from "node:path";
-import { cwd } from "node:process";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import { createBrotliCompress } from "node:zlib";
 
 const compressDir = async () => {
   try {
-    const sourceDir = resolve(cwd(), "workspace", "toCompress");
-    const targetDir = resolve(cwd(), "workspace", "compressed");
+    const sourceDir = resolve("workspace", "toCompress");
+    const targetDir = resolve("workspace", "compressed");
 
     await mkdir(targetDir, { recursive: true });
 

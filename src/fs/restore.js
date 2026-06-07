@@ -1,11 +1,10 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
-import { cwd } from "node:process";
 
 const restore = async () => {
   try {
-    const targetFile = resolve(cwd(), "snapshot.json");
-    const targetDir = resolve(cwd(), "workspace_restored");
+    const targetFile = resolve("snapshot.json");
+    const targetDir = resolve("workspace_restored");
 
     const data = await readFile(targetFile);
     const { entries } = JSON.parse(data);

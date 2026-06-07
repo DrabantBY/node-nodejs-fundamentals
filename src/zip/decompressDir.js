@@ -1,14 +1,13 @@
 import { createReadStream } from "node:fs";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
-import { cwd } from "node:process";
 import { pipeline } from "node:stream/promises";
 import { createBrotliDecompress } from "node:zlib";
 
 const decompressDir = async () => {
   try {
-    const sourceFile = resolve(cwd(), "workspace", "compressed", "archive.br");
-    const targetDir = resolve(cwd(), "workspace", "decompressed");
+    const sourceFile = resolve("workspace", "compressed", "archive.br");
+    const targetDir = resolve("workspace", "decompressed");
 
     await mkdir(targetDir, { recursive: true });
 

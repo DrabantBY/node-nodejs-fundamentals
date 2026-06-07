@@ -1,10 +1,9 @@
 import { readdir, readFile, stat, writeFile } from "node:fs/promises";
 import { join, relative, resolve } from "node:path";
-import { cwd } from "node:process";
 
 const snapshot = async () => {
   try {
-    const rootPath = resolve(cwd(), "workspace");
+    const rootPath = resolve("workspace");
     const files = await readdir(rootPath, {
       recursive: true,
       withFileTypes: true,
@@ -37,7 +36,7 @@ const snapshot = async () => {
     }
 
     await writeFile(
-      resolve(cwd(), "snapshot.json"),
+      resolve("snapshot.json"),
       JSON.stringify(snapshot, null, 2),
     );
   } catch {

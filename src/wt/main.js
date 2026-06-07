@@ -1,7 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { availableParallelism } from "node:os";
 import { resolve } from "node:path";
-import { cwd } from "node:process";
 import { Worker } from "node:worker_threads";
 
 const sortByHeap = (arr) => {
@@ -84,7 +83,7 @@ const createWorker = (path, workerData) => {
 };
 
 const main = async () => {
-  const data = await readFile(resolve(cwd(), "data.json"));
+  const data = await readFile(resolve("data.json"));
 
   const numbers = JSON.parse(data);
 
