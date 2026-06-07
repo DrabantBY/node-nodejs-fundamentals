@@ -20,7 +20,9 @@ const findByExt = async () => {
     });
 
     const extFiles = files
-      .filter((file) => file.endsWith(`.${ext}`))
+      .filter((file) =>
+        file.endsWith(`${ext.startsWith(".") ? "" : "."}${ext}`),
+      )
       .sort((a, b) => a.localeCompare(b));
 
     for (const file of extFiles) {

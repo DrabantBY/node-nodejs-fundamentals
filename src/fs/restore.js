@@ -9,7 +9,7 @@ const restore = async () => {
     const data = await readFile(targetFile);
     const { entries } = JSON.parse(data);
 
-    await mkdir(targetDir, { recursive: true });
+    await mkdir(targetDir);
 
     for (const { type, path, content } of entries) {
       if (type === "directory") {

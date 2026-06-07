@@ -1,11 +1,10 @@
-import { cwd, exit, stdin, stdout, uptime } from "node:process";
 import { createInterface } from "node:readline/promises";
 
 const interactive = async () => {
-  const rl = createInterface({ input: stdin, output: stdout });
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
   rl.on("close", () => {
     console.log("\nGoodbye!");
-    exit(0);
+    process.exit(0);
   });
 
   rl.on("SIGINT", rl.close);
@@ -15,12 +14,12 @@ const interactive = async () => {
 
     switch (line.trim()) {
       case "uptime": {
-        console.log(`Uptime: ${uptime().toFixed(2)}s`);
+        console.log(`Uptime: ${process.uptime().toFixed(2)}s`);
         break;
       }
 
       case "cwd": {
-        console.log(cwd());
+        console.log(process.cwd());
         break;
       }
 

@@ -4,6 +4,7 @@ import { join, relative, resolve } from "node:path";
 const snapshot = async () => {
   try {
     const rootPath = resolve("workspace");
+
     const files = await readdir(rootPath, {
       recursive: true,
       withFileTypes: true,
